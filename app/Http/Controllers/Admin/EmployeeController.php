@@ -23,6 +23,7 @@ class EmployeeController extends Controller
         // Return the view with the employee data
         return view('admin.employees.index', compact('employees', 'search'));
     }
+
     public function view($businessEntityID)
     {
         // Fetch the employee by BusinessEntityID
@@ -59,9 +60,13 @@ class EmployeeController extends Controller
     }
     public function edit($businessEntityID)
     {
+        // Fetch the employee by BusinessEntityID
         $employee = Employee::where('BusinessEntityID', $businessEntityID)->firstOrFail();
+
+        // Return the edit form view with the employee data
         return view('admin.employees.edit', compact('employee'));
     }
+
     public function update(Request $request, $businessEntityID)
     {
         // Validate the form data
@@ -80,15 +85,17 @@ class EmployeeController extends Controller
             'ModifiedDate' => 'required|date',
         ]);
 
-        // Find the employee by BusinessEntityID
+        // Fetch the employee by BusinessEntityID
         $employee = Employee::where('BusinessEntityID', $businessEntityID)->firstOrFail();
 
-        // Update employee information
+        // Update the employee data
         $employee->update($validatedData);
 
         // Redirect back to employee list with a success message
         return redirect()->route('admin.employees.index')->with('success', 'Employee updated successfully');
     }
+
+
     public function destroy($businessEntityID)
     {
         $employee = Employee::where('BusinessEntityID', $businessEntityID)->firstOrFail();

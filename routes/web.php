@@ -18,10 +18,9 @@ Route::get(
 Route::get('/admin/employees', [EmployeeController::class, 'index'])->name('admin.employees.index');
 Route::post('/admin/employees', [EmployeeController::class, 'store'])->name('admin.employees.store');
 Route::get('/admin/employees/{businessEntityID}/view', [EmployeeController::class, 'view'])->name('admin.employees.view');
-Route::get('/admin/employees/{businessEntityID}/edit', [EmployeeController::class, 'edit'])->name('admin.employees.edit');
-Route::put('/admin/employees/{employee}', [EmployeeController::class, 'update'])->name('admin.employees.update');
 Route::delete('/admin/employees/{businessEntityID}', [EmployeeController::class, 'destroy'])->name('admin.employees.destroy');
-
+Route::get('/admin/employees/{businessEntityID}/edit', [EmployeeController::class, 'edit'])->name('admin.employees.edit');
+Route::put('/admin/employees/{businessEntityID}', [EmployeeController::class, 'update'])->name('admin.employees.update');
 
 // Departments//
 Route::get('/admin/departments', [DepartmentController::class, 'index'])->name('admin.departments.index');
